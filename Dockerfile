@@ -10,8 +10,8 @@ WORKDIR /app
 # This runs pip install for all the packages listed in your requirements.txt file.
 RUN pip install -r requirements.txt
 
-# This tells Docker to listen on port 80 at runtime. Port 80 is the standard port for HTTP.
-EXPOSE 80
+# This tells Docker to listen on port 3000 at runtime. Port 3000 is the standard port for HTTP.
+EXPOSE 3000
 
 # This command creates a .streamlit directory in the home directory of the container.
 RUN mkdir ~/.streamlit
