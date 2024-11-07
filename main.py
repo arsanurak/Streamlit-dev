@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import pandas as pd  # Import the pandas library
 
 # WordPress API URL
 api_url = "https://wp.dollarsmart.co/wp-json/n8n-api/v1/get-n8n-data"
@@ -39,6 +40,16 @@ if st.button("Use Tool"):
                 # Display the entire JSON response
                 st.write(f"**Full Response Data:**")
                 st.json(data)
+
+                # Display the n8n_response data in a table
+                st.write(f"**n8n Response Data:**")
+                n8n_response = data.get('data', {}).get('n8n_response', [])
+                if n8n_response:
+                    st.table(
+                        pd.DataFrame(n8n_response))  # Now pandas is available
+                else:
+                    st.write("No data in n8n_response.")
+
             else:
                 st.error(f"Failed: {data.get('message')}")
         elif response.status_code == 401:
